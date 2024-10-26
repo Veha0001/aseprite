@@ -48,6 +48,7 @@ jobs:
         mkdir build
         cmake -S . -B build -G Ninja \
           -DENABLE_CCACHE=OFF \
+          -DCMAKE_EXE_LINKER_FLAGS="-static" \
           -DCMAKE_BUILD_TYPE=${{ inputs.buildtype }} \
           -DLAF_BACKEND=skia \
           -DSKIA_DIR=skia \
@@ -68,4 +69,4 @@ jobs:
       with:
         files: build/Aseprite-${{ inputs.tags }}.tar.xz
         name: Aseprite ${{ inputs.tags }}
-        tag_name: "ci-${{ input.tags }}"
+        tag_name: "ci-${{ inputs.tags }}"
